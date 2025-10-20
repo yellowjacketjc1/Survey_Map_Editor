@@ -41,183 +41,190 @@ class _EditingPanelState extends State<EditingPanel> {
     _buildingController.dispose();
     _roomController.dispose();
     _doseValueController.dispose();
+    _doseValueFocusNode.dispose();
+    _removeTooltip();
+    super.dispose();
+  }
+
+  void _onDoseRateValidationFailed() {
+    setState(() {
+      _highlightDoseValue = true;
+    });
+    _doseValueFocusNode.requestFocus();
+    _showTooltip();
+
+    // Remove highlight and tooltip after 3 seconds
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        setState(() {
+          _highlightDoseValue = false;
+        });
+        _removeTooltip();
+      }
+    });
+  }
+
+  void _showTooltip() {
+    _removeTooltip(); // Remove any existing tooltip first
+
+    final RenderBox? renderBox = _doseValueFieldKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox == null) return;
+
+    final position = renderBox.localToGlobal(Offset.zero);
+    final size = renderBox.size;
+
+    _tooltipOverlay = OverlayEntry(
+      builder: (context) => Positioned(
+        left: position.dx + size.width / 2 - 60,
+        top: position.dy - 40,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.red.shade700,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.warning, color: Colors.white, size: 16),
+                SizedBox(width: 6),
+                Text(
+                  'Enter value',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ),
-          if (model.currentTool == ToolType.doseAdd) ...[
-            const SizedBox(height: 8),
-            Focus(
-              autofocus: false,
-              onKeyEvent: (node, event) {
-                if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.escape) {
-                  model.setTool(ToolType.none);
-                  return KeyEventResult.handled;
-                }
-                return KeyEventResult.ignored;
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+    );
+
+    Overlay.of(context).insert(_tooltipOverlay!);
+  }
+
+  void _removeTooltip() {
+    _tooltipOverlay?.remove();
+    _tooltipOverlay = null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 350,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(-2, 0),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Header
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade700,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: TextField(
-                              key: _doseValueFieldKey,
-                              controller: _doseValueController,
-                              focusNode: _doseValueFocusNode,
-                              decoration: InputDecoration(
-                                labelText: 'Value',
-                                hintText: 'Enter dose rate',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: _highlightDoseValue ? Colors.red : Colors.grey,
-                                    width: _highlightDoseValue ? 2 : 1,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: _highlightDoseValue ? Colors.red : Colors.grey,
-                                    width: _highlightDoseValue ? 2 : 1,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: _highlightDoseValue ? Colors.red : Colors.blue,
-                                    width: 2,
-                                  ),
-                                ),
-                                filled: _highlightDoseValue,
-                                fillColor: _highlightDoseValue ? Colors.red.withOpacity(0.1) : null,
-                                isDense: true,
-                              ),
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) {
-                                if (value.trim().isEmpty) {
-                                  model.clearDoseValue();
-                                  return;
-                                }
-                                final parsed = double.tryParse(value);
-                                if (parsed != null && parsed > 0) {
-                                  model.setDoseValue(parsed);
-                                  if (_highlightDoseValue) {
-                                    setState(() {
-                                      _highlightDoseValue = false;
-                                    });
-                                    _removeTooltip();
-                                  }
-                                }
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 2),
-                          Expanded(
-                            child: DropdownButtonFormField<String>(
-                              value: model.doseUnit,
-                              decoration: const InputDecoration(
-                                labelText: 'Unit',
-                                border: OutlineInputBorder(),
-                                isDense: true,
-                              ),
-                              items: const [
-                                DropdownMenuItem(value: 'μR/hr', child: Text('μR/hr')),
-                                DropdownMenuItem(value: 'mR/hr', child: Text('mR/hr')),
-                                DropdownMenuItem(value: 'R/hr', child: Text('R/hr')),
-                              ],
-                              onChanged: (value) {
-                                if (value != null) {
-                                  model.setDoseUnit(value);
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: InkWell(
-                            onTap: () => model.setDoseType(DoseType.gamma),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Radio<DoseType>(
-                                  value: DoseType.gamma,
-                                  groupValue: model.doseType,
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      model.setDoseType(value);
-                                    }
-                                  },
-                                  visualDensity: VisualDensity.compact,
-                                ),
-                                const Text('Gamma', style: TextStyle(fontSize: 13)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: InkWell(
-                            onTap: () => model.setDoseType(DoseType.neutron),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Radio<DoseType>(
-                                  value: DoseType.neutron,
-                                  groupValue: model.doseType,
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      model.setDoseType(value);
-                                    }
-                                  },
-                                  visualDensity: VisualDensity.compact,
-                                ),
-                                const Text('Neutron', style: TextStyle(fontSize: 13)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Font Size', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-                            Text('${model.doseFontSize.round()}', style: const TextStyle(fontSize: 12)),
-                          ],
-                        ),
-                        Slider(
-                          value: model.doseFontSize,
-                          min: 8,
-                          max: 24,
-                          divisions: 16,
-                          label: model.doseFontSize.round().toString(),
-                          onChanged: (value) {
-                            model.setDoseFontSize(value);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-          ],
+            child: const Row(
+              children: [
+                Icon(Icons.edit, color: Colors.white),
+                SizedBox(width: 8),
+                Text(
+                  'Editing Tools',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Content
+          Expanded(
+            child: Consumer<SurveyMapModel>(
+              builder: (context, model, child) {
+                return ListView(
+                  padding: const EdgeInsets.all(16),
+                  children: [
+                    _buildTitleCardSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildSmearSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildDoseRateSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildBoundarySection(context, model),
+                    const SizedBox(height: 16),
+                    _buildCommentSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildEquipmentSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildPostingsSection(context, model),
+                    const SizedBox(height: 16),
+                    _buildClearAllSection(context, model),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _buildSmearSection(BuildContext context, SurveyMapModel model) {
+    final isActive = model.currentTool == ToolType.smearAdd;
+
+    return InkWell(
+      onTap: () {
+        // Toggle between smearAdd and none
+        if (model.currentTool == ToolType.smearAdd) {
+          model.setTool(ToolType.none);
+        } else {
+          model.setTool(ToolType.smearAdd);
+        }
+      },
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        decoration: BoxDecoration(
+          color: isActive ? Colors.blue.withValues(alpha: 0.1) : Colors.transparent,
+          border: Border.all(
+            color: isActive ? Colors.blue : Colors.grey.shade300,
+            width: isActive ? 2 : 1,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.add_circle_outline,
+              size: 20,
               color: isActive ? Colors.blue : Colors.grey.shade600,
             ),
             const SizedBox(width: 8),
@@ -310,25 +317,25 @@ class _EditingPanelState extends State<EditingPanel> {
           ),
         ),
         if (model.currentTool == ToolType.doseAdd) ...[
-              const SizedBox(height: 8),
-              Focus(
-                autofocus: false,
-                onKeyEvent: (node, event) {
-                  if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.escape) {
-                    // When user presses Escape while focused inside the dose panel (for example the
-                    // value TextField), return to selection mode by clearing the tool.
-                    model.setTool(ToolType.none);
-                    return KeyEventResult.handled;
-                  }
-                  return KeyEventResult.ignored;
-                },
-                child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Column(
+          const SizedBox(height: 8),
+          Focus(
+            autofocus: false,
+            onKeyEvent: (node, event) {
+              if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.escape) {
+                // When user presses Escape while focused inside the dose panel (for example the
+                // value TextField), return to selection mode by clearing the tool.
+                model.setTool(ToolType.none);
+                return KeyEventResult.handled;
+              }
+              return KeyEventResult.ignored;
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IntrinsicHeight(
