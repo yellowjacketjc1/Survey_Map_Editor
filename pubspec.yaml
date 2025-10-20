@@ -11,7 +11,9 @@ dependencies:
     sdk: flutter
 
   # PDF rendering
-  pdfx: ^2.6.0
+  # Pin pdfx to 2.6.0 to avoid newer releases that currently fail web compilation
+  # on the CI Flutter stable toolchain used in the GitHub Actions workflow.
+  pdfx: 2.6.0
 
   # PDF creation
   pdf: ^3.10.7

@@ -566,12 +566,25 @@ class IconLoader {
           chosenAssetPath = found;
         }
 
+        // Try to eagerly load the SVG text for robustness on web deployments
+        // where asset bundle lookups may not match the repository layout.
+        String? svgText;
+        try {
+          svgText = await rootBundle.loadString(chosenAssetPath);
+          print('Loaded SVG text for ${posting.svgFilename} from $chosenAssetPath (len ${svgText.length})');
+        } catch (e) {
+          // ignore - we'll fall back to using assetPath which lets
+          // SvgPicture.asset attempt to resolve via AssetManifest.
+          svgText = null;
+        }
+
         icons.add(IconMetadata(
           file: posting.svgFilename,
           name: '${posting.id} - ${posting.header}',
           category: IconCategory.posting,
           keywords: posting.tags.toList(),
-          assetPath: chosenAssetPath,
+          assetPath: svgText == null ? chosenAssetPath : null,
+          svgText: svgText,
           metadata: posting,
         ));
       }
