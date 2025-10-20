@@ -495,26 +495,83 @@ class IconLoader {
     final icons = <IconMetadata>[];
 
     try {
-      // Load the postings.json file
-      print('Loading postings.json...');
-      final jsonString = await rootBundle.loadString('assets/postings.json');
-      print('JSON loaded, length: ${jsonString.length}');
-      print('First 100 chars: ${jsonString.substring(0, 100)}');
+      // Try several likely locations for postings.json. Some Flutter web builds
+      // place assets under `assets/` and end up with `assets/assets/...` on
+      // the published site; try both variants so the web app can find the file.
+      final candidatePaths = [
+        'assets/postings.json',
+        'assets/assets/postings.json',
+        'postings.json',
+      ];
+
+      String? jsonString;
+      String? usedPath;
+      for (final p in candidatePaths) {
+        try {
+          jsonString = await rootBundle.loadString(p);
+          usedPath = p;
+          break;
+        } catch (_) {
+          // try next
+        }
+      }
+
+      if (jsonString == null) {
+        throw Exception('postings.json not found in any known asset location');
+      }
+
+      print('Loaded postings.json from: $usedPath (length: ${jsonString.length})');
 
       final jsonData = json.decode(jsonString);
       final postingsList = jsonData['postings'] as List<dynamic>;
       print('Found ${postingsList.length} postings');
 
+      // Load AssetManifest to determine actual deployed asset keys so we can
+      // correct svg asset paths if Flutter web nested them under another `assets/`.
+      Set<String> assetKeys = {};
+      try {
+        String? manifestStr;
+        try {
+          manifestStr = await rootBundle.loadString('AssetManifest.json');
+        } catch (_) {
+          // fallback path
+          manifestStr = await rootBundle.loadString('assets/AssetManifest.json');
+        }
+        final manifestJson = json.decode(manifestStr) as Map<String, dynamic>;
+        assetKeys = manifestJson.keys.map((k) => k.toString()).toSet();
+        print('AssetManifest loaded, ${assetKeys.length} keys');
+      } catch (e) {
+        print('Could not load AssetManifest to normalize asset paths: $e');
+      }
+
       // Convert each posting to IconMetadata
       for (final postingJson in postingsList) {
         final posting = PostingMetadata.fromJson(postingJson);
+
+        // Determine the actual asset path to use at runtime. The posting
+        // metadata contains `svgAssetPath` (e.g. 'assets/Postings/Slide1.svg').
+        // On some builds the actual served key is 'assets/assets/Postings/...'
+        // so try variants and prefer the one present in AssetManifest.
+        String chosenAssetPath = posting.svgAssetPath;
+        if (assetKeys.isNotEmpty) {
+          final candidates = <String>{
+            posting.svgAssetPath,
+            'assets/${posting.svgAssetPath}',
+            posting.svgAssetPath.replaceFirst(RegExp('^assets/'), ''),
+          };
+          final found = candidates.firstWhere(
+            (c) => assetKeys.contains(c),
+            orElse: () => posting.svgAssetPath,
+          );
+          chosenAssetPath = found;
+        }
 
         icons.add(IconMetadata(
           file: posting.svgFilename,
           name: '${posting.id} - ${posting.header}',
           category: IconCategory.posting,
           keywords: posting.tags.toList(),
-          assetPath: posting.svgAssetPath,
+          assetPath: chosenAssetPath,
           metadata: posting,
         ));
       }
