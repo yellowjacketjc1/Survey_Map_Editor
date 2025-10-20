@@ -670,18 +670,26 @@ class _MapCanvasState extends State<MapCanvas> {
 
   void _handleScaleStart(ScaleStartDetails details) {
     final model = context.read<SurveyMapModel>();
-    final pagePosition = model.canvasToPage(details.focalPoint);
+    final pagePosition = model.canvasToPage(details.localFocalPoint);
 
-    debugPrint('ScaleStart: tool=${model.currentTool}, pos=${details.focalPoint}');
+    debugPrint('ScaleStart: tool=${model.currentTool}, pos=${details.localFocalPoint}');
 
     // Store positions for tap/drag detection
-    _gestureStartPosition = details.focalPoint;
-    _lastPanPosition = details.focalPoint;
+    _gestureStartPosition = details.localFocalPoint;
+    _lastPanPosition = details.localFocalPoint;
     _lastScale = 1.0;
 
 
     // Only check for dragging when no tool is active
     if (model.currentTool == ToolType.none) {
+      debugPrint('Checking for draggable items at page position: $pagePosition');
+      debugPrint('Equipment count: ${model.equipment.length}, Dose rates: ${model.doseRates.length}, Smears: ${model.smears.length}');
+    } else {
+      debugPrint('Tool is active (${model.currentTool}), skipping drag detection');
+    }
+
+    if (model.currentTool == ToolType.none) {
+
       // Check for icon resize handle
       if (model.selectedIcon != null) {
         final handle = model.getResizeHandleAtPosition(
@@ -736,7 +744,9 @@ class _MapCanvasState extends State<MapCanvas> {
 
       // Check for icon drag
       final equipment = model.getEquipmentAtPosition(pagePosition);
+      debugPrint('Equipment check result: ${equipment != null ? "Found ${equipment.iconFile}" : "None found"}');
       if (equipment != null) {
+        debugPrint('Icon drag started: ${equipment.iconFile} at ${equipment.position}');
         model.selectIcon(equipment);
         setState(() {
           _selectedSmear = null;
@@ -809,40 +819,47 @@ class _MapCanvasState extends State<MapCanvas> {
   }
 
   void _handleScaleUpdate(ScaleUpdateDetails details, SurveyMapModel model) {
-    debugPrint('ScaleUpdate: pointers=${details.pointerCount}, scale=${details.scale}, focal=${details.focalPoint}');
+    debugPrint('ScaleUpdate: pointers=${details.pointerCount}, scale=${details.scale}, focal=${details.localFocalPoint}');
+    debugPrint('  _draggedIcon=$_draggedIcon, _draggedDoseRate=$_draggedDoseRate, _draggedSmear=$_draggedSmear');
+    debugPrint('  _draggedComment=$_draggedComment, _draggedTitleCard=$_draggedTitleCard, _draggedStatsCard=$_draggedStatsCard');
 
     if (_draggedTitleCard) {
-      _dragTitleCard(details.focalPoint, model);
+      debugPrint('→ Dragging title card');
+      _dragTitleCard(details.localFocalPoint, model);
       return;
     }
 
     if (_draggedStatsCard) {
-      _dragStatsCard(details.focalPoint, model);
+      debugPrint('→ Dragging stats card');
+      _dragStatsCard(details.localFocalPoint, model);
       return;
     }
 
     if (_draggedSmear != null) {
-      _dragSmear(details.focalPoint, model);
+      debugPrint('→ Dragging smear');
+      _dragSmear(details.localFocalPoint, model);
       return;
     }
 
     if (_draggedDoseRate != null) {
-      _dragDoseRate(details.focalPoint, model);
+      debugPrint('→ Dragging dose rate');
+      _dragDoseRate(details.localFocalPoint, model);
       return;
     }
 
     if (_draggedIcon != null) {
-      _dragIcon(details.focalPoint, model);
+      debugPrint('→ Dragging icon');
+      _dragIcon(details.localFocalPoint, model);
       return;
     }
 
     if (_draggedComment != null) {
-      _dragComment(details.focalPoint, model);
+      _dragComment(details.localFocalPoint, model);
       return;
     }
 
     if (model.isResizing) {
-      _resizeIcon(details.focalPoint, model);
+      _resizeIcon(details.localFocalPoint, model);
       return;
     }
 
@@ -859,22 +876,23 @@ class _MapCanvasState extends State<MapCanvas> {
         final zoomDelta = scaleDelta * 10.0;
 
         final size = MediaQuery.of(context).size;
-        model.zoom(zoomDelta, details.focalPoint, size);
+        model.zoom(zoomDelta, details.localFocalPoint, size);
 
         _lastScale = details.scale;
-        _lastPanPosition = details.focalPoint;
+        _lastPanPosition = details.localFocalPoint;
         return;
       }
     }
 
     // Handle pan - only when no tool is active or when using pan-compatible tools
     if (_lastPanPosition != null && model.currentTool == ToolType.none && details.pointerCount == 1) {
-      final delta = details.focalPoint - _lastPanPosition!;
+      debugPrint('→ Panning map (no items being dragged)');
+      final delta = details.localFocalPoint - _lastPanPosition!;
       model.updateOffset(delta);
     }
 
     // Always update last position for distance tracking (but don't use for panning unless tool is none)
-    _lastPanPosition = details.focalPoint;
+    _lastPanPosition = details.localFocalPoint;
   }
 
   void _handleScaleEnd(ScaleEndDetails details) {
