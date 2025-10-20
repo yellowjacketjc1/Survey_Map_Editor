@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/survey_map_model.dart';
 import '../models/annotation_models.dart';
@@ -316,8 +317,19 @@ class _EditingPanelState extends State<EditingPanel> {
           ),
         ),
         if (model.currentTool == ToolType.doseAdd) ...[
-          const SizedBox(height: 8),
-          Container(
+              const SizedBox(height: 8),
+              Focus(
+                autofocus: false,
+                onKeyEvent: (node, event) {
+                  if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.escape) {
+                    // When user presses Escape while focused inside the dose panel (for example the
+                    // value TextField), return to selection mode by clearing the tool.
+                    model.setTool(ToolType.none);
+                    return KeyEventResult.handled;
+                  }
+                  return KeyEventResult.ignored;
+                },
+                child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
