@@ -87,9 +87,11 @@ class PdfService {
         'viewport': viewport,
       });
 
-      await js_util.promiseToFuture(
-        js_util.callMethod(page, 'render', [renderContext]),
-      );
+      // page.render() returns a RenderTask object, we need to get its promise
+      final renderTask = js_util.callMethod(page, 'render', [renderContext]);
+      final renderPromise = js_util.getProperty(renderTask, 'promise');
+
+      await js_util.promiseToFuture(renderPromise);
 
       print('Page rendered to canvas');
 
