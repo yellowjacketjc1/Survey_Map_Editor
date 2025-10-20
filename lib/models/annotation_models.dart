@@ -42,12 +42,14 @@ class DoseRateAnnotation {
   double value;
   String unit;
   DoseType type;
+  double fontSize;
 
   DoseRateAnnotation({
     required this.position,
     required this.value,
     this.unit = 'μR/hr',
     this.type = DoseType.gamma,
+    this.fontSize = 14.0,
   });
 
   DoseRateAnnotation copyWith({
@@ -55,12 +57,14 @@ class DoseRateAnnotation {
     double? value,
     String? unit,
     DoseType? type,
+    double? fontSize,
   }) {
     return DoseRateAnnotation(
       position: position ?? this.position,
       value: value ?? this.value,
       unit: unit ?? this.unit,
       type: type ?? this.type,
+      fontSize: fontSize ?? this.fontSize,
     );
   }
 
@@ -71,6 +75,7 @@ class DoseRateAnnotation {
       'value': value,
       'unit': unit,
       'type': type.name,
+      'fontSize': fontSize,
     };
   }
 
@@ -86,6 +91,7 @@ class DoseRateAnnotation {
         (e) => e.name == json['type'],
         orElse: () => DoseType.gamma,
       ),
+      fontSize: (json['fontSize'] as num?)?.toDouble() ?? 14.0,
     );
   }
 }

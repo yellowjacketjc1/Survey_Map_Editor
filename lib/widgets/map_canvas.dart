@@ -505,7 +505,12 @@ class _MapCanvasState extends State<MapCanvas> {
 
     if (model.currentTool == ToolType.doseAdd) {
       debugPrint('Adding dose rate at $pagePosition');
-      model.addDoseRate(pagePosition);
+      // Validate dose rate value before showing dialog
+      if (!model.validateDoseRateValue()) {
+        debugPrint('Dose rate validation failed - no value entered');
+        return;
+      }
+      _showAddDoseRateDialog(model, pagePosition);
       return;
     }
 
@@ -1019,7 +1024,12 @@ class _MapCanvasState extends State<MapCanvas> {
 
     if (model.currentTool == ToolType.doseAdd) {
       debugPrint('Adding dose rate at $pagePosition');
-      model.addDoseRate(pagePosition);
+      // Validate dose rate value before showing dialog
+      if (!model.validateDoseRateValue()) {
+        debugPrint('Dose rate validation failed - no value entered');
+        return;
+      }
+      _showAddDoseRateDialog(model, pagePosition);
       return;
     }
 
@@ -1380,6 +1390,11 @@ class _MapCanvasState extends State<MapCanvas> {
         ],
       ),
     );
+  }
+
+  void _showAddDoseRateDialog(SurveyMapModel model, Offset pagePosition) {
+    // Simply add the dose rate with the value from the side panel
+    model.addDoseRate(pagePosition);
   }
 
   void _showEditCommentDialog(SurveyMapModel model, CommentAnnotation comment) {

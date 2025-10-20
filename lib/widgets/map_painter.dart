@@ -157,9 +157,9 @@ class MapPainter extends CustomPainter {
     final textPainter = TextPainter(
       text: TextSpan(
         text: displayValue,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.black,
-          fontSize: 12,
+          fontSize: dose.fontSize,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -487,7 +487,7 @@ class MapPainter extends CustomPainter {
     canvas.translate(-titleCard.position.dx, -titleCard.position.dy);
 
     const cardWidth = 240.0;
-    const cardHeight = 210.0; // Increased to fit statistics
+    const cardHeight = 240.0; // Increased to fit larger text
     final cardRect = Rect.fromLTWH(
       titleCard.position.dx,
       titleCard.position.dy,
@@ -545,7 +545,7 @@ class MapPainter extends CustomPainter {
         text: 'Survey Information',
         style: TextStyle(
           color: Colors.white,
-          fontSize: 14,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -559,7 +559,7 @@ class MapPainter extends CustomPainter {
 
     // Draw fields
     double yOffset = titleCard.position.dy + 40;
-    const lineHeight = 24.0;
+    const lineHeight = 28.0;
 
     _drawField(canvas, 'Survey ID:', titleCard.surveyId, titleCard.position.dx + 8, yOffset);
     yOffset += lineHeight;
@@ -606,7 +606,7 @@ class MapPainter extends CustomPainter {
             text: 'Smears: ',
             style: TextStyle(
               color: Colors.black87,
-              fontSize: 11,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -614,7 +614,7 @@ class MapPainter extends CustomPainter {
             text: '${model.smears.length}',
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 11,
+              fontSize: 14,
             ),
           ),
         ],
@@ -623,7 +623,7 @@ class MapPainter extends CustomPainter {
     );
     smearCountPainter.layout();
     smearCountPainter.paint(canvas, Offset(x, yOffset));
-    yOffset += 20;
+    yOffset += 24;
 
     // Draw highest dose rate
     final highestDose = model.highestDoseRate;
@@ -637,7 +637,7 @@ class MapPainter extends CustomPainter {
               text: 'Max Dose: ',
               style: TextStyle(
                 color: Colors.black87,
-                fontSize: 11,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -645,14 +645,14 @@ class MapPainter extends CustomPainter {
               text: '${highestDose.value} ${highestDose.unit}',
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 11,
+                fontSize: 14,
               ),
             ),
             TextSpan(
               text: ' ($doseTypeStr)',
               style: TextStyle(
                 color: highestDose.type == DoseType.gamma ? Colors.blue : Colors.red,
-                fontSize: 11,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -668,7 +668,7 @@ class MapPainter extends CustomPainter {
           text: 'Max Dose: —',
           style: TextStyle(
             color: Colors.grey,
-            fontSize: 11,
+            fontSize: 14,
           ),
         ),
         textDirection: TextDirection.ltr,
@@ -684,7 +684,7 @@ class MapPainter extends CustomPainter {
         text: label,
         style: const TextStyle(
           color: Colors.black87,
-          fontSize: 11,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -698,7 +698,7 @@ class MapPainter extends CustomPainter {
         text: value.isEmpty ? '—' : value,
         style: TextStyle(
           color: value.isEmpty ? Colors.grey : Colors.black,
-          fontSize: 11,
+          fontSize: 14,
         ),
       ),
       textDirection: TextDirection.ltr,

@@ -16,8 +16,22 @@ class _EditingPanelState extends State<EditingPanel> {
   final TextEditingController _surveyorController = TextEditingController();
   final TextEditingController _buildingController = TextEditingController();
   final TextEditingController _roomController = TextEditingController();
+  final TextEditingController _doseValueController = TextEditingController();
 
   bool _iconsExpanded = false;
+  final FocusNode _doseValueFocusNode = FocusNode();
+  final GlobalKey _doseValueFieldKey = GlobalKey();
+  bool _highlightDoseValue = false;
+  OverlayEntry? _tooltipOverlay;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final model = context.read<SurveyMapModel>();
+      model.setDoseRateValidationCallback(_onDoseRateValidationFailed);
+    });
+  }
 
   @override
   void dispose() {
@@ -25,7 +39,84 @@ class _EditingPanelState extends State<EditingPanel> {
     _surveyorController.dispose();
     _buildingController.dispose();
     _roomController.dispose();
+    _doseValueController.dispose();
+    _doseValueFocusNode.dispose();
+    _removeTooltip();
     super.dispose();
+  }
+
+  void _onDoseRateValidationFailed() {
+    setState(() {
+      _highlightDoseValue = true;
+    });
+    _doseValueFocusNode.requestFocus();
+    _showTooltip();
+
+    // Remove highlight and tooltip after 3 seconds
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        setState(() {
+          _highlightDoseValue = false;
+        });
+        _removeTooltip();
+      }
+    });
+  }
+
+  void _showTooltip() {
+    _removeTooltip(); // Remove any existing tooltip first
+
+    final RenderBox? renderBox = _doseValueFieldKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox == null) return;
+
+    final position = renderBox.localToGlobal(Offset.zero);
+    final size = renderBox.size;
+
+    _tooltipOverlay = OverlayEntry(
+      builder: (context) => Positioned(
+        left: position.dx + size.width / 2 - 60,
+        top: position.dy - 40,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.red.shade700,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.warning, color: Colors.white, size: 16),
+                SizedBox(width: 6),
+                Text(
+                  'Enter value',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    Overlay.of(context).insert(_tooltipOverlay!);
+  }
+
+  void _removeTooltip() {
+    _tooltipOverlay?.remove();
+    _tooltipOverlay = null;
   }
 
   @override
@@ -242,16 +333,51 @@ class _EditingPanelState extends State<EditingPanel> {
                       Expanded(
                         flex: 2,
                         child: TextField(
-                          decoration: const InputDecoration(
+                          key: _doseValueFieldKey,
+                          controller: _doseValueController,
+                          focusNode: _doseValueFocusNode,
+                          decoration: InputDecoration(
                             labelText: 'Value',
-                            border: OutlineInputBorder(),
+                            hintText: 'Enter dose rate',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: _highlightDoseValue ? Colors.red : Colors.grey,
+                                width: _highlightDoseValue ? 2 : 1,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: _highlightDoseValue ? Colors.red : Colors.grey,
+                                width: _highlightDoseValue ? 2 : 1,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: _highlightDoseValue ? Colors.red : Colors.blue,
+                                width: 2,
+                              ),
+                            ),
+                            filled: _highlightDoseValue,
+                            fillColor: _highlightDoseValue ? Colors.red.withOpacity(0.1) : null,
                             isDense: true,
                           ),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
+                            if (value.trim().isEmpty) {
+                              // User cleared the field - reset the flag
+                              model.clearDoseValue();
+                              return;
+                            }
                             final parsed = double.tryParse(value);
-                            if (parsed != null) {
+                            if (parsed != null && parsed > 0) {
                               model.setDoseValue(parsed);
+                              // Remove highlight when user enters a value
+                              if (_highlightDoseValue) {
+                                setState(() {
+                                  _highlightDoseValue = false;
+                                });
+                                _removeTooltip();
+                              }
                             }
                           },
                         ),
@@ -327,6 +453,29 @@ class _EditingPanelState extends State<EditingPanel> {
                           ],
                         ),
                       ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Font Size', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                        Text('${model.doseFontSize.round()}', style: const TextStyle(fontSize: 12)),
+                      ],
+                    ),
+                    Slider(
+                      value: model.doseFontSize,
+                      min: 8,
+                      max: 24,
+                      divisions: 16,
+                      label: model.doseFontSize.round().toString(),
+                      onChanged: (value) {
+                        model.setDoseFontSize(value);
+                      },
                     ),
                   ],
                 ),

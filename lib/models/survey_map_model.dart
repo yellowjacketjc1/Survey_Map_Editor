@@ -48,6 +48,11 @@ class SurveyMapModel extends ChangeNotifier {
   double _doseValue = 100;
   String _doseUnit = 'μR/hr';
   DoseType _doseType = DoseType.gamma;
+  double _doseFontSize = 14.0;
+  bool _doseValueEntered = false; // Track if user has entered a value
+
+  // Dose rate validation callback
+  VoidCallback? _onDoseRateValidationFailed;
 
   // Icon selection and resizing
   EquipmentAnnotation? _selectedIcon;
@@ -90,6 +95,7 @@ class SurveyMapModel extends ChangeNotifier {
   double get doseValue => _doseValue;
   String get doseUnit => _doseUnit;
   DoseType get doseType => _doseType;
+  double get doseFontSize => _doseFontSize;
   EquipmentAnnotation? get selectedIcon => _selectedIcon;
   bool get isResizing => _isResizing;
   ResizeHandle? get resizeHandle => _resizeHandle;
@@ -330,6 +336,12 @@ class SurveyMapModel extends ChangeNotifier {
   // Dose rate methods
   void setDoseValue(double value) {
     _doseValue = value;
+    _doseValueEntered = true; // Mark that user has entered a value
+    notifyListeners();
+  }
+
+  void clearDoseValue() {
+    _doseValueEntered = false; // Reset the flag when value is cleared
     notifyListeners();
   }
 
@@ -343,12 +355,30 @@ class SurveyMapModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setDoseFontSize(double size) {
+    _doseFontSize = size;
+    notifyListeners();
+  }
+
+  void setDoseRateValidationCallback(VoidCallback? callback) {
+    _onDoseRateValidationFailed = callback;
+  }
+
+  bool validateDoseRateValue() {
+    if (!_doseValueEntered || _doseValue <= 0) {
+      _onDoseRateValidationFailed?.call();
+      return false;
+    }
+    return true;
+  }
+
   void addDoseRate(Offset position) {
     final doseRate = DoseRateAnnotation(
       position: position,
       value: _doseValue,
       unit: _doseUnit,
       type: _doseType,
+      fontSize: _doseFontSize,
     );
     undoRedoManager.executeCommand(AddDoseRateCommand(this, doseRate));
     debugPrint('✓ Dose rate added at $position: $_doseValue $_doseUnit, total: ${_doseRates.length}');
