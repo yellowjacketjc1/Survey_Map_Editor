@@ -1,0 +1,1980 @@
+{
+  "postings": [
+    {
+      "id": "#01",
+      "revision_date": "04-2013",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA. THIS AREA IS CONTROLLED FOR THE PURPOSE OF RADIATION PROTECTION, GENERAL EMPLOYEE RADIOLOGICAL TRAINING (GERT) IS REQUIRED FOR UNESCORTED ACCESS."
+    },
+    {
+      "id": "#02",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT",
+        "Beam is Off (area status is “open”, “inhibited”, or “tripped”)"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA. Entry Requirements: GERT, Beam is Off (area status is “open”, “inhibited”, or “tripped”)."
+    },
+    {
+      "id": "#03",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1."
+    },
+    {
+      "id": "#04",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1."
+    },
+    {
+      "id": "#05",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter."
+    },
+    {
+      "id": "#06",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter."
+    },
+    {
+      "id": "#07",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#08",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#09",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#10",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#11",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [
+        "ACTIVATED EQUIPMENT"
+      ],
+      "entry_requirements": [
+        "RadWorker 1"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL (ACTIVATED EQUIPMENT). Entry Requirements: RadWorker 1."
+    },
+    {
+      "id": "#12",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [
+        "ACTIVATED EQUIPMENT"
+      ],
+      "entry_requirements": [
+        "RadWorker 1"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL (ACTIVATED EQUIPMENT). Entry Requirements: RadWorker 1."
+    },
+    {
+      "id": "#13",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [
+        "ACTIVATED EQUIPMENT"
+      ],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL (ACTIVATED EQUIPMENT). Entry Requirements: RadWorker 1, Dosimeter."
+    },
+    {
+      "id": "#14",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [
+        "ACTIVATED EQUIPMENT"
+      ],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL (ACTIVATED EQUIPMENT). Entry Requirements: RadWorker 1, Dosimeter."
+    },
+    {
+      "id": "#15",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Beam is Off (area status is “open”, “inhibited”, or “tripped”)"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Beam is Off (area status is “open”, “inhibited”, or “tripped”)."
+    },
+    {
+      "id": "#16",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Beam is Off (area status is “open”, “inhibited”, or “tripped”)"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Beam is Off (area status is “open”, “inhibited”, or “tripped”)."
+    },
+    {
+      "id": "#17",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#18",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#19",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#20",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#21",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#22",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#23",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#24",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#25",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#26",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA. Entry Requirements: RadWorker 1, Survey Upon Exit."
+    },
+    {
+      "id": "#27",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#28",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter",
+        "Survey Upon Exit"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA. Entry Requirements: RadWorker 1, Dosimeter, Survey Upon Exit."
+    },
+    {
+      "id": "#29",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIOLOGICAL BUFFER AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#30",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#31",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA, RADIOLOGICAL BUFFER AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#32",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOLOGICAL BUFFER AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#33",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIATION AREA, RADIOLOGICAL BUFFER AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#34",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOLOGICAL BUFFER AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#35",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#36",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#37",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIATION AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#38",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOLOGICAL BUFFER AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOLOGICAL BUFFER AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#39",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#40",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#41",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "CAUTION RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#42",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#43",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN BEAM OPERATES"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA (WHEN BEAM OPERATES). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#44",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN BEAM OPERATES"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA (WHEN BEAM OPERATES). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#45",
+      "revision_date": "05-2021",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN IN RESTRICTED ACCESS MODE"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA (WHEN IN RESTRICTED ACCESS MODE). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#46",
+      "revision_date": "05-2021",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN IN RESTRICTED ACCESS MODE"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA (WHEN IN RESTRICTED ACCESS MODE). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#47",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN DEVICE OPERATES"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA (WHEN DEVICE OPERATES). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#48",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN DEVICE OPERATES"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA (WHEN DEVICE OPERATES). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#49",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "CAUTION RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#50",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#51",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#52",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#53",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN SOURCE IS EXPOSED OR UNSECURED"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA (WHEN SOURCE IS EXPOSED OR UNSECURED). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#54",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN SOURCE IS EXPOSED OR UNSECURED"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA (WHEN SOURCE IS EXPOSED OR UNSECURED). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#55",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION HIGH RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#56",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#57",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN SOURCE IS EXPOSED OR UNSECURED"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION HIGH RADIATION AREA (WHEN SOURCE IS EXPOSED OR UNSECURED). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#58",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN SOURCE IS EXPOSED OR UNSECURED"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA (WHEN SOURCE IS EXPOSED OR UNSECURED). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#59",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "CAUTION HIGH RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#60",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#61",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "CAUTION HIGH RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#62",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#63",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE"
+      ],
+      "full_text": "CAUTION HIGH RADIATION AREA. NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE."
+    },
+    {
+      "id": "#64",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA. NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE."
+    },
+    {
+      "id": "#65",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION HIGH RADIATION AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#66",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#67",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#68",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#69",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTAMINATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#70",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#71",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTAMINATION AREA, RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#72",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA, RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#73",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTAMINATION AREA, RADIATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#74",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA, RADIATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#75",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#76",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#77",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION HIGH CONTAMINATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#78",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH CONTAMINATION AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#79",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION AIRBORNE RADIOACTIVITY AREA, CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#80",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "AIRBORNE RADIOACTIVITY AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, AIRBORNE RADIOACTIVITY AREA, CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#81",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION AIRBORNE RADIOACTIVITY AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#82",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "AIRBORNE RADIOACTIVITY AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, AIRBORNE RADIOACTIVITY AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#83",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "UNDERGROUND RADIOACTIVE MATERIAL AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "Contact Health Physics Before Entering Area"
+      ],
+      "full_text": "CAUTION UNDERGROUND RADIOACTIVE MATERIAL AREA. Contact Health Physics Before Entering Area."
+    },
+    {
+      "id": "#84",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "UNDERGROUND RADIOACTIVE MATERIAL AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "Contact Health Physics Before Entering Area"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, UNDERGROUND RADIOACTIVE MATERIAL AREA. Contact Health Physics Before Entering Area."
+    },
+    {
+      "id": "#85",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "FIXED CONTAMINATION"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "Obtain HP Approval Before Disturbing Surfaces"
+      ],
+      "full_text": "CAUTION FIXED CONTAMINATION. Obtain HP Approval Before Disturbing Surfaces."
+    },
+    {
+      "id": "#86",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "FIXED CONTAMINATION"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "Obtain HP Approval Before Disturbing Surfaces"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, FIXED CONTAMINATION. Obtain HP Approval Before Disturbing Surfaces."
+    },
+    {
+      "id": "#87",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [
+        "Elevator Shaft Below Floor Level"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTAMINATION AREA (Elevator Shaft Below Floor Level). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#88",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [
+        "Elevator Shaft Below Floor Level"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA (Elevator Shaft Below Floor Level). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#89",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#90",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "CONTROLLED AREA",
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "GRAVE DANGER CONTROLLED AREA, VERY HIGH RADIATION AREA. NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#91",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "BEAM PERMIT MODE"
+      ],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED DURING OPERATION"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA (BEAM PERMIT MODE). NO ENTRY ALLOWED DURING OPERATION."
+    },
+    {
+      "id": "#92",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "CONTROLLED AREA",
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "BEAM PERMIT MODE"
+      ],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED DURING OPERATION"
+      ],
+      "full_text": "GRAVE DANGER CONTROLLED AREA, VERY HIGH RADIATION AREA (BEAM PERMIT MODE). NO ENTRY ALLOWED DURING OPERATION."
+    },
+    {
+      "id": "#93",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#94",
+      "revision_date": "05-2015",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "CONTROLLED AREA",
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN DEVICE MAY OPERATE"
+      ],
+      "full_text": "GRAVE DANGER CONTROLLED AREA, VERY HIGH RADIATION AREA. NO ENTRY WHEN DEVICE MAY OPERATE."
+    },
+    {
+      "id": "#95",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#96",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#97",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION RADIATION AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#98",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#99",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTAMINATION AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#100",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA, RADIOACTIVE MATERIAL. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#101",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTAMINATION AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#102",
+      "revision_date": "05-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "CONTAMINATION AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, CONTAMINATION AREA, RADIOACTIVE MATERIAL. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#103",
+      "revision_date": "06-2015",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA. Entry Requirements: GERT."
+    },
+    {
+      "id": "#104",
+      "revision_date": "05-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION HIGH RADIATION AREA, CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#105",
+      "revision_date": "05-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "HIGH RADIATION AREA",
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, HIGH RADIATION AREA, CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#106",
+      "revision_date": "05-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION AIRBORNE RADIOACTIVITY AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#107",
+      "revision_date": "05-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "AIRBORNE RADIOACTIVITY AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, AIRBORNE RADIOACTIVITY AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#108",
+      "revision_date": "07-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE"
+      ],
+      "full_text": "CAUTION RADIATION AREA. NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE."
+    },
+    {
+      "id": "#109",
+      "revision_date": "07-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA, RADIATION AREA. NO ENTRY WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE."
+    },
+    {
+      "id": "#110",
+      "revision_date": "07-2016",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "INTERNALLY CONTAMINATED SYSTEMS PRESENT"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA. INTERNALLY CONTAMINATED SYSTEMS PRESENT. Entry Requirements: GERT."
+    },
+    {
+      "id": "#111",
+      "revision_date": "02-2019",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTAMINATION AREA"
+      ],
+      "conditions": [
+        "UNDER PLASTIC SHEET"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTAMINATION AREA UNDER PLASTIC SHEET. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#112",
+      "revision_date": "01-2021",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN RED LIGHT IS ON"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA. NO ENTRY WHEN RED LIGHT IS ON."
+    },
+    {
+      "id": "#113",
+      "revision_date": "01-2021",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA. NO ENTRY ALLOWED AT THIS DOOR."
+    },
+    {
+      "id": "#114",
+      "revision_date": "04-2021",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED"
+      ],
+      "full_text": "CAUTION CONTROLLED AREA. NO ENTRY ALLOWED."
+    },
+    {
+      "id": "#115",
+      "revision_date": "04-2021",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA. NO ENTRY ALLOWED."
+    },
+    {
+      "id": "#116",
+      "revision_date": "07-2021",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOLOGICAL BUFFER AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOLOGICAL BUFFER AREA. Entry Requirements: RadWorker 1, Dosimeter."
+    },
+    {
+      "id": "#117",
+      "revision_date": "02-2022",
+      "header": "DANGER",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA",
+        "HIGH CONTAMINATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "DANGER AIRBORNE RADIOACTIVITY AREA, HIGH CONTAMINATION AREA, RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#118",
+      "revision_date": "02-2022",
+      "header": "DANGER",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA",
+        "HIGH CONTAMINATION AREA",
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "DANGER AIRBORNE RADIOACTIVITY AREA, HIGH CONTAMINATION AREA, HIGH RADIATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#119",
+      "revision_date": "02-2022",
+      "header": "DANGER",
+      "area_types": [
+        "AIRBORNE RADIOACTIVITY AREA",
+        "HIGH CONTAMINATION AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "DANGER AIRBORNE RADIOACTIVITY AREA, HIGH CONTAMINATION AREA. Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#120",
+      "revision_date": "03-2022",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "AT PENETRATION IN BEAM PERMIT MODE"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA (AT PENETRATION IN BEAM PERMIT MODE). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#121",
+      "revision_date": "03-2022",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE",
+        "WHEN AREA IS IN RESTRICTED ACCESS MODE"
+      ],
+      "entry_requirements": [],
+      "instructions": [],
+      "full_text": "CAUTION HIGH RADIATION AREA (WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE), RADIATION AREA (WHEN AREA IS IN RESTRICTED ACCESS MODE)."
+    },
+    {
+      "id": "#122",
+      "revision_date": "05-2022",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA",
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE",
+        "WHEN AREA IS IN RESTRICTED ACCESS MODE"
+      ],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR"
+      ],
+      "full_text": "NO ENTRY ALLOWED AT THIS DOOR. CAUTION HIGH RADIATION AREA (WHEN AREA IS IN “LOCKED” OR “NO ACCESS” MODE), RADIATION AREA (WHEN AREA IS IN RESTRICTED ACCESS MODE)."
+    },
+    {
+      "id": "#123",
+      "revision_date": "05-2022",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT",
+        "Beam is Off (Green light is ON)"
+      ],
+      "instructions": [
+        "NO ENTRY ALLOWED AT THIS DOOR WHEN RED LIGHT IS ON"
+      ],
+      "full_text": "NO ENTRY ALLOWED AT THIS DOOR WHEN RED LIGHT IS ON. CAUTION CONTROLLED AREA. Entry Requirements: GERT, Beam is Off (Green light is ON)."
+    },
+    {
+      "id": "#124",
+      "revision_date": "05-2022",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA",
+        "RADIOACTIVE MATERIAL"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "RadWorker 1",
+        "Beam is Off (Green light is ON)"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA, RADIOACTIVE MATERIAL. Entry Requirements: RadWorker 1, Beam is Off (Green light is ON)."
+    },
+    {
+      "id": "#125",
+      "revision_date": "08-2023",
+      "header": "CAUTION",
+      "area_types": [
+        "CONTROLLED AREA"
+      ],
+      "conditions": [],
+      "entry_requirements": [
+        "GERT",
+        "Dosimeter"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION CONTROLLED AREA. Entry Requirements: GERT, Dosimeter."
+    },
+    {
+      "id": "#126",
+      "revision_date": "0-2024",
+      "header": "CAUTION",
+      "area_types": [
+        "HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "ABOVE 7 FEET",
+        "BEAM PERMIT MODE"
+      ],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY WHEN BEAM MAY OPERATE"
+      ],
+      "full_text": "CAUTION HIGH RADIATION AREA ABOVE 7 FEET (BEAM PERMIT MODE). Entry Requirements: NO ENTRY WHEN BEAM MAY OPERATE."
+    },
+    {
+      "id": "#127",
+      "revision_date": "04-2024",
+      "header": "CAUTION",
+      "area_types": [
+        "RADIATION AREA"
+      ],
+      "conditions": [
+        "ABOVE 7 FEET",
+        "BEAM PERMIT MODE"
+      ],
+      "entry_requirements": [
+        "Signed RWP"
+      ],
+      "instructions": [],
+      "full_text": "CAUTION RADIATION AREA ABOVE 7 FEET (BEAM PERMIT MODE). Entry Requirements: Signed RWP."
+    },
+    {
+      "id": "#128",
+      "revision_date": "12-2024",
+      "header": "GRAVE DANGER",
+      "area_types": [
+        "VERY HIGH RADIATION AREA"
+      ],
+      "conditions": [
+        "When Device Operates"
+      ],
+      "entry_requirements": [],
+      "instructions": [
+        "NO ENTRY ALLOWED DURING OPERATION"
+      ],
+      "full_text": "GRAVE DANGER VERY HIGH RADIATION AREA (When Device Operates). NO ENTRY ALLOWED DURING OPERATION."
+    }
+  ]
+}
