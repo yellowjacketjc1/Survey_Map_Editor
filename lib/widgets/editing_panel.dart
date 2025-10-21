@@ -482,8 +482,8 @@ class _EditingPanelState extends State<EditingPanel> {
                     Slider(
                       value: model.doseFontSize,
                       min: 8,
-                      max: 24,
-                      divisions: 16,
+                      max: 50,
+                      divisions: 42,
                       label: model.doseFontSize.round().toString(),
                       onChanged: (value) {
                         model.setDoseFontSize(value);

@@ -268,26 +268,27 @@ class _MapCanvasState extends State<MapCanvas> {
   }
 
   Future<void> _loadSvgToImage(String svgContent, String key, {required bool isAsset}) async {
-    if (_iconCache.containsKey(key)) return;
+    if (_iconCache.containsKey(key)) {
+      print('   ℹ️  Icon already in cache: $key');
+      return;
+    }
 
     try {
-      debugPrint('Loading SVG: $key (isAsset: $isAsset, content length: ${svgContent.length})');
-
-      // For asset loading, log the full path
-      if (isAsset) {
-        debugPrint('Asset path: $svgContent');
-      }
+      print('📂 Loading SVG: $key');
+      print('   isAsset: $isAsset');
+      print('   content length: ${svgContent.length}');
+      print('   content preview: ${svgContent.substring(0, svgContent.length.clamp(0, 80))}');
 
       final pictureInfo = await vg_lib.vg.loadPicture(
         isAsset ? SvgAssetLoader(svgContent) : SvgStringLoader(svgContent),
         null,
       );
 
-      debugPrint('SVG loaded successfully, size: ${pictureInfo.size}');
+      print('   ✓ SVG parsed, size: ${pictureInfo.size}');
 
       // Check for zero or invalid dimensions
       if (pictureInfo.size.width <= 0 || pictureInfo.size.height <= 0) {
-        debugPrint('Warning: SVG $key has invalid dimensions: ${pictureInfo.size}');
+        print('   ⚠️  WARNING: SVG $key has invalid dimensions: ${pictureInfo.size}');
         pictureInfo.picture.dispose();
         return;
       }
@@ -305,14 +306,18 @@ class _MapCanvasState extends State<MapCanvas> {
         setState(() {
           _iconCache[key] = image;
         });
-        debugPrint('SVG cached successfully: $key (${_iconCache.length} total cached)');
+        print('   ✅ SVG cached successfully: $key (${_iconCache.length} total in cache)');
+      } else {
+        print('   ⚠️  Widget unmounted, could not cache: $key');
       }
 
       pictureInfo.picture.dispose();
     } catch (e, stackTrace) {
-      debugPrint('❌ ERROR loading SVG $key: $e');
-      debugPrint('   Asset: $isAsset, Path/Content: ${svgContent.substring(0, svgContent.length.clamp(0, 100))}');
-      debugPrint('   Stack trace: $stackTrace');
+      print('❌ ERROR loading SVG $key');
+      print('   isAsset: $isAsset');
+      print('   Path/Content: ${svgContent.substring(0, svgContent.length.clamp(0, 150))}');
+      print('   Error: $e');
+      print('   Stack trace: $stackTrace');
     }
   }
 
@@ -1441,8 +1446,10 @@ class _MapCanvasState extends State<MapCanvas> {
     final icon = details.data;
     final dropPosition = details.offset;
 
-    debugPrint('Icon drop detected: ${icon.name} (${icon.file}) at $dropPosition');
-    debugPrint('Icon category: ${icon.category}, hasAssetPath: ${icon.assetPath != null}, hasSvgText: ${icon.svgText != null}');
+    print('🎯 Icon drop detected: ${icon.name} (${icon.file}) at $dropPosition');
+    print('   Category: ${icon.category}');
+    print('   hasAssetPath: ${icon.assetPath != null} ${icon.assetPath != null ? '(${icon.assetPath})' : ''}');
+    print('   hasSvgText: ${icon.svgText != null} ${icon.svgText != null ? '(len ${icon.svgText!.length})' : ''}');
 
     // Convert screen position to page position
     final pagePosition = model.canvasToPage(dropPosition);
@@ -1452,15 +1459,17 @@ class _MapCanvasState extends State<MapCanvas> {
     bool isAsset = false;
     if (icon.metadata is Map && icon.metadata['type'] == 'material') {
       iconContent = 'material:${icon.file}';
-      debugPrint('Material icon detected');
+      print('   → Material icon detected');
     } else {
       iconContent = icon.svgText ?? '';
       if (iconContent.isEmpty && icon.assetPath != null) {
         iconContent = icon.assetPath!;
         isAsset = true;
-        debugPrint('Asset path icon detected: $iconContent');
+        print('   → Asset path icon detected: $iconContent');
       } else if (iconContent.isNotEmpty) {
-        debugPrint('Inline SVG detected, length: ${iconContent.length}');
+        print('   → Inline SVG detected, length: ${iconContent.length}');
+      } else {
+        print('   ⚠️  WARNING: No icon content available!');
       }
     }
 
@@ -1473,20 +1482,20 @@ class _MapCanvasState extends State<MapCanvas> {
       height: 80,
     );
 
-    debugPrint('Adding equipment: file=${equipment.iconFile}, page pos=$pagePosition');
+    print('   Adding equipment to model: file=${equipment.iconFile}');
     model.addEquipment(equipment);
 
     // Load the icon for this equipment
     if (icon.metadata is Map && icon.metadata['type'] == 'material') {
       final iconData = icon.metadata['iconData'] as IconData;
-      debugPrint('Loading material icon to cache...');
+      print('   Loading material icon to cache...');
       _loadMaterialIconToImage(iconData, icon.file);
     } else {
-      debugPrint('Loading SVG to cache (isAsset: $isAsset)...');
+      print('   📥 Loading SVG to cache: ${icon.file} (isAsset: $isAsset, content: ${iconContent.substring(0, iconContent.length.clamp(0, 50))})');
       _loadSvgToImage(iconContent, icon.file, isAsset: isAsset);
     }
 
-    debugPrint('Equipment added successfully. Total equipment: ${model.equipment.length}');
+    print('✅ Equipment drop complete. Total equipment: ${model.equipment.length}');
   }
 
   void _dragSmear(Offset focalPoint, SurveyMapModel model) {

@@ -49,7 +49,7 @@ class DoseRateAnnotation {
     required this.value,
     this.unit = 'μR/hr',
     this.type = DoseType.gamma,
-    this.fontSize = 14.0,
+    this.fontSize = 24.0,
   });
 
   DoseRateAnnotation copyWith({

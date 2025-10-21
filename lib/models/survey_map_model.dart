@@ -48,7 +48,7 @@ class SurveyMapModel extends ChangeNotifier {
   double _doseValue = 100;
   String _doseUnit = 'μR/hr';
   DoseType _doseType = DoseType.gamma;
-  double _doseFontSize = 14.0;
+  double _doseFontSize = 24.0;
   bool _doseValueEntered = false; // Track if user has entered a value
 
   // Dose rate validation callback
