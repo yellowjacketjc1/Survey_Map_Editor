@@ -333,6 +333,9 @@ class _MapCanvasState extends State<MapCanvas> {
       return;
     }
 
+    // Declare processedContent outside try block so it's accessible in catch
+    String processedContent = svgContent;
+
     try {
       print('📂 Loading SVG: $key');
       print('   isAsset: $isAsset');
@@ -340,7 +343,7 @@ class _MapCanvasState extends State<MapCanvas> {
       print('   content preview: ${svgContent.substring(0, svgContent.length.clamp(0, 80))}');
 
       // For inline SVG content, strip XML declaration and comments that can cause parsing issues
-      String processedContent = svgContent;
+      processedContent = svgContent;
       if (!isAsset) {
         print('   🔧 Cleaning inline SVG content...');
         // Remove XML declaration (<?xml ... ?>)
