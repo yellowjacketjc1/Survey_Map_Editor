@@ -339,10 +339,22 @@ class _MapCanvasState extends State<MapCanvas> {
       print('   content length: ${svgContent.length}');
       print('   content preview: ${svgContent.substring(0, svgContent.length.clamp(0, 80))}');
 
+      // For inline SVG content, strip XML declaration and comments that can cause parsing issues
+      String processedContent = svgContent;
+      if (!isAsset) {
+        // Remove XML declaration (<?xml ... ?>)
+        processedContent = processedContent.replaceAll(RegExp(r'<\?xml[^?]*\?>'), '');
+        // Remove standalone XML/DOCTYPE declarations
+        processedContent = processedContent.replaceAll(RegExp(r'<!DOCTYPE[^>]*>'), '');
+        // Trim whitespace
+        processedContent = processedContent.trim();
+        print('   ✂️  Stripped XML declarations, new length: ${processedContent.length}');
+      }
+
       // Create the appropriate loader based on whether the content is an asset path or raw SVG text.
       final BytesLoader loader = isAsset
           ? SvgAssetLoader(svgContent, assetBundle: rootBundle)
-          : SvgStringLoader(svgContent);
+          : SvgStringLoader(processedContent);
 
       // Load the raw SVG data into a ByteData object.
       print('   🔄 Loading bytes from ${isAsset ? "asset" : "string"}...');
