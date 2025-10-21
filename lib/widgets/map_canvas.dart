@@ -363,20 +363,9 @@ class _MapCanvasState extends State<MapCanvas> {
           ? SvgAssetLoader(svgContent, assetBundle: rootBundle)
           : SvgStringLoader(processedContent);
 
-      // Load the raw SVG data into a ByteData object.
-      print('   🔄 Loading bytes from ${isAsset ? "asset" : "string"}...');
-      final ByteData? data = await loader.loadBytes(null);
-      if (data == null) {
-        print('   ❌ ERROR: loadBytes returned null for $key');
-        return;
-      }
-      print('   ✓ Loaded ${data.lengthInBytes} bytes');
-
-      final Uint8List bytes = data.buffer.asUint8List();
-      print('   🎨 Converting to picture...');
-      final PictureInfo pictureInfo = await vg_lib.vg.loadPicture(
-        SvgBytesLoader(bytes), null
-      );
+      // Load the SVG directly from the loader (which contains the preprocessed content)
+      print('   🎨 Converting to picture using ${isAsset ? "asset" : "string"} loader...');
+      final PictureInfo pictureInfo = await vg_lib.vg.loadPicture(loader, null);
       print('   ✓ Picture created, size: ${pictureInfo.size}');
       
       // Check for zero or invalid dimensions
@@ -408,7 +397,12 @@ class _MapCanvasState extends State<MapCanvas> {
     } catch (e, stackTrace) {
       print('❌ ERROR loading SVG $key');
       print('   isAsset: $isAsset');
-      print('   Path/Content: ${svgContent.substring(0, svgContent.length.clamp(0, 150))}');
+      if (isAsset) {
+        print('   Asset path: ${svgContent.substring(0, svgContent.length.clamp(0, 150))}');
+      } else {
+        print('   Original content preview: ${svgContent.substring(0, svgContent.length.clamp(0, 80))}');
+        print('   Processed content preview: ${processedContent.substring(0, processedContent.length.clamp(0, 80))}');
+      }
       print('   Error: $e');
       print('   Stack trace: $stackTrace');
     }
