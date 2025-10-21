@@ -342,13 +342,20 @@ class _MapCanvasState extends State<MapCanvas> {
       // For inline SVG content, strip XML declaration and comments that can cause parsing issues
       String processedContent = svgContent;
       if (!isAsset) {
+        print('   🔧 Cleaning inline SVG content...');
         // Remove XML declaration (<?xml ... ?>)
         processedContent = processedContent.replaceAll(RegExp(r'<\?xml[^?]*\?>'), '');
         // Remove standalone XML/DOCTYPE declarations
         processedContent = processedContent.replaceAll(RegExp(r'<!DOCTYPE[^>]*>'), '');
+        // Remove HTML comments (<!-- ... -->)
+        processedContent = processedContent.replaceAll(RegExp(r'<!--.*?-->', dotAll: true), '');
         // Trim whitespace
         processedContent = processedContent.trim();
-        print('   ✂️  Stripped XML declarations, new length: ${processedContent.length}');
+        print('   ✂️  Stripped XML declarations and comments');
+        print('   📏 New length: ${processedContent.length}');
+        print('   👀 New preview: ${processedContent.substring(0, processedContent.length.clamp(0, 80))}');
+      } else {
+        print('   📦 Using asset loader (no preprocessing)');
       }
 
       // Create the appropriate loader based on whether the content is an asset path or raw SVG text.
