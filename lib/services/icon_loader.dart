@@ -556,12 +556,14 @@ class IconLoader {
         // 'assets/assets/Postings/Slide1.svg' or just 'Postings/Slide1.svg'.
         // We create a set of likely candidates to check against the AssetManifest
         // and then try to load from.
+        // Build candidate paths including potential GitHub Pages variations
         final Set<String> candidatePaths = {
           posting.svgAssetPath, // e.g., 'assets/Postings/Slide1.svg'
           'assets/${posting.svgAssetPath}', // e.g., 'assets/assets/Postings/Slide1.svg'
         };
         if (posting.svgAssetPath.startsWith('assets/')) {
           candidatePaths.add(posting.svgAssetPath.substring('assets/'.length)); // e.g., 'Postings/Slide1.svg'
+          candidatePaths.add('packages/survey_map_editor/${posting.svgAssetPath}'); // Package path
         }
 
         String? chosenAssetPath;

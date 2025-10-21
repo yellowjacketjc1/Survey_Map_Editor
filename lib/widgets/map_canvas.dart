@@ -78,16 +78,43 @@ class _MapCanvasState extends State<MapCanvas> {
     final model = context.read<SurveyMapModel>();
     final icon = model.iconLibrary.firstWhere(
       (icon) => icon.file == equipment.iconFile,
-      orElse: () => throw Exception('Icon not found: ${equipment.iconFile}'),
+      orElse: () {
+        debugPrint('⚠️ Icon not found in library: ${equipment.iconFile}');
+        return null as IconMetadata; // Will be caught below
+      },
     );
+
+    if (icon == null) {
+      debugPrint('⚠️ Skipping icon load for ${equipment.iconFile} - not in library');
+      return;
+    }
 
     if (icon.metadata is Map && icon.metadata['type'] == 'material') {
       final iconData = icon.metadata['iconData'] as IconData;
       await _loadMaterialIconToImage(iconData, equipment.iconFile);
     } else {
-      final isAsset = equipment.iconSvg.startsWith('assets/') ||
-                      equipment.iconSvg.contains('.svg');
-      await _loadSvgToImage(equipment.iconSvg, equipment.iconFile, isAsset: isAsset);
+      // Determine content source - prefer inline SVG text over asset path
+      String content;
+      bool isAsset;
+
+      if (icon.svgText != null && icon.svgText!.isNotEmpty) {
+        // Use inline SVG text (already loaded during app startup)
+        content = icon.svgText!;
+        isAsset = false;
+        debugPrint('📄 Loading ${equipment.iconFile} from inline SVG (${content.length} chars)');
+      } else if (icon.assetPath != null && icon.assetPath!.isNotEmpty) {
+        // Fallback to asset path
+        content = icon.assetPath!;
+        isAsset = true;
+        debugPrint('📁 Loading ${equipment.iconFile} from asset path: $content');
+      } else {
+        // Use equipment's iconSvg as last resort
+        content = equipment.iconSvg;
+        isAsset = equipment.iconSvg.startsWith('assets/') || equipment.iconSvg.contains('.svg');
+        debugPrint('📋 Loading ${equipment.iconFile} from equipment data (isAsset: $isAsset)');
+      }
+
+      await _loadSvgToImage(content, equipment.iconFile, isAsset: isAsset);
     }
   }
 
