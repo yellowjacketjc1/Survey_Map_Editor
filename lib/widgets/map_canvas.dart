@@ -345,11 +345,20 @@ class _MapCanvasState extends State<MapCanvas> {
           : SvgStringLoader(svgContent);
 
       // Load the raw SVG data into a ByteData object.
+      print('   🔄 Loading bytes from ${isAsset ? "asset" : "string"}...');
       final ByteData? data = await loader.loadBytes(null);
-      final Uint8List bytes = data!.buffer.asUint8List();
+      if (data == null) {
+        print('   ❌ ERROR: loadBytes returned null for $key');
+        return;
+      }
+      print('   ✓ Loaded ${data.lengthInBytes} bytes');
+
+      final Uint8List bytes = data.buffer.asUint8List();
+      print('   🎨 Converting to picture...');
       final PictureInfo pictureInfo = await vg_lib.vg.loadPicture(
         SvgBytesLoader(bytes), null
       );
+      print('   ✓ Picture created, size: ${pictureInfo.size}');
       
       // Check for zero or invalid dimensions
       if (pictureInfo.size.width <= 0 || pictureInfo.size.height <= 0) {

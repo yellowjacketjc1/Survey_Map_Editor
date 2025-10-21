@@ -51,7 +51,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/
     - assets/Postings/
     - assets/postings.json
     - assets/building_maps.json
