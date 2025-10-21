@@ -1447,7 +1447,7 @@ class _MapCanvasState extends State<MapCanvas> {
     );
   }
 
-  void _handleIconDrop(DragTargetDetails<IconMetadata> details, SurveyMapModel model) {
+  Future<void> _handleIconDrop(DragTargetDetails<IconMetadata> details, SurveyMapModel model) async {
     final icon = details.data;
     final dropPosition = details.offset;
 
@@ -1490,14 +1490,14 @@ class _MapCanvasState extends State<MapCanvas> {
     print('   Adding equipment to model: file=${equipment.iconFile}');
     model.addEquipment(equipment);
 
-    // Load the icon for this equipment
+    // Load the icon for this equipment (await to ensure it's in cache before adding)
     if (icon.metadata is Map && icon.metadata['type'] == 'material') {
       final iconData = icon.metadata['iconData'] as IconData;
       print('   Loading material icon to cache...');
-      _loadMaterialIconToImage(iconData, icon.file);
+      await _loadMaterialIconToImage(iconData, icon.file);
     } else {
       print('   📥 Loading SVG to cache: ${icon.file} (isAsset: $isAsset, content: ${iconContent.substring(0, iconContent.length.clamp(0, 50))})');
-      _loadSvgToImage(iconContent, icon.file, isAsset: isAsset);
+      await _loadSvgToImage(iconContent, icon.file, isAsset: isAsset);
     }
 
     print('✅ Equipment drop complete. Total equipment: ${model.equipment.length}');
