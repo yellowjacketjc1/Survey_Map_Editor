@@ -286,8 +286,9 @@ class _MapCanvasState extends State<MapCanvas> {
 
       // Load the raw SVG data into a ByteData object.
       final ByteData? data = await loader.loadBytes(null);
+      final Uint8List bytes = data!.buffer.asUint8List();
       final PictureInfo pictureInfo = await vg_lib.vg.loadPicture(
-        SvgBytesLoader(data!), null
+        SvgBytesLoader(bytes), null
       );
       
       // Check for zero or invalid dimensions
