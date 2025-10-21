@@ -279,19 +279,19 @@ class _MapCanvasState extends State<MapCanvas> {
       print('   content length: ${svgContent.length}');
       print('   content preview: ${svgContent.substring(0, svgContent.length.clamp(0, 80))}');
 
-      // --- Start of suggested change ---
-      // Use flutter_svg's picture provider, which is more robust for complex SVGs,
-      // especially those with embedded images or unsupported features that the
-      // lower-level vector_graphics library might struggle with.
+      // --- Start of corrected solution ---
+      // Create the appropriate loader based on whether the content is an asset path or raw SVG text.
+      final BytesLoader loader = isAsset
+          ? SvgAssetLoader(svgContent, assetBundle: rootBundle)
+          : SvgStringLoader(svgContent);
 
-      final PictureProvider pictureProvider = isAsset
-          ? SvgAssetPicture.string(rootBundle, svgContent)
-          : SvgPicture.string(svgContent).pictureProvider;
-
-      final pictureInfo = await pictureProvider.resolve(
-        const PictureConfiguration(),
+      // Use the flutter_svg cache to load and decode the SVG. This is more robust
+      // than calling vg.loadPicture directly, as it handles more complex SVGs.
+      final PictureInfo pictureInfo = await svg.cache.putIfAbsent(
+        loader.cacheKey(null),
+        () => loader.loadBytes(null).then((bytes) => vg_lib.vg.loadPicture(BytesLoader(bytes), null)),
       );
-      // --- End of suggested change ---
+      // --- End of corrected solution ---
       
       // Check for zero or invalid dimensions
       if (pictureInfo.size.width <= 0 || pictureInfo.size.height <= 0) {
