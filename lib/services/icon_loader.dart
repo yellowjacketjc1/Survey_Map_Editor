@@ -548,61 +548,53 @@ class IconLoader {
       for (final postingJson in postingsList) {
         final posting = PostingMetadata.fromJson(postingJson);
 
-        // Determine the actual asset path to use at runtime. The posting
-        // metadata contains `svgAssetPath` (e.g. 'assets/Postings/Slide1.svg').
-        // On some builds the actual served key is 'assets/assets/Postings/...'
-        // so try variants and prefer the one present in AssetManifest.
-        String chosenAssetPath = posting.svgAssetPath;
+        // --- Start of suggested change ---
+
+        // On web, asset paths can be unpredictable. The original path might be
+        // 'assets/Postings/Slide1.svg', but the deployed path could be
+        // 'assets/assets/Postings/Slide1.svg' or just 'Postings/Slide1.svg'.
+        // We create a set of likely candidates to check against the AssetManifest
+        // and then try to load from.
+        final Set<String> candidatePaths = {
+          posting.svgAssetPath, // e.g., 'assets/Postings/Slide1.svg'
+          'assets/${posting.svgAssetPath}', // e.g., 'assets/assets/Postings/Slide1.svg'
+        };
+        if (posting.svgAssetPath.startsWith('assets/')) {
+          candidatePaths.add(posting.svgAssetPath.substring('assets/'.length)); // e.g., 'Postings/Slide1.svg'
+        }
+
+        String? chosenAssetPath;
         if (assetKeys.isNotEmpty) {
-          final candidates = <String>{
-            posting.svgAssetPath,
-            'assets/${posting.svgAssetPath}',
-            posting.svgAssetPath.replaceFirst(RegExp('^assets/'), ''),
-          };
           print('🔍 Searching for ${posting.svgFilename} in asset manifest...');
-          print('   Candidates: ${candidates.join(", ")}');
-          final found = candidates.firstWhere(
-            (c) => assetKeys.contains(c),
-            orElse: () => posting.svgAssetPath,
-          );
-          chosenAssetPath = found;
-          print('   ✓ Chosen path: $chosenAssetPath');
+          print('   Candidates: ${candidatePaths.join(", ")}');
+          chosenAssetPath = candidatePaths.firstWhere((c) => assetKeys.contains(c), orElse: () => null);
+          if (chosenAssetPath != null) {
+            print('   ✓ Found in manifest: $chosenAssetPath');
+          } else {
+            print('   ❌ Not found in manifest.');
+          }
         } else {
           print('⚠️  AssetManifest is empty - using default path: ${posting.svgAssetPath}');
         }
 
-        // Try to eagerly load the SVG text for robustness on web deployments
-        // where asset bundle lookups may not match the repository layout.
+        // Eagerly load SVG text. If we found a path in the manifest, try it first.
+        // Otherwise, iterate through all candidates.
         String? svgText;
-        try {
-          svgText = await rootBundle.loadString(chosenAssetPath);
-          print('✅ Loaded SVG text for ${posting.svgFilename} from $chosenAssetPath (len ${svgText.length})');
-        } catch (e) {
-          print('❌ Failed to load ${posting.svgFilename} from $chosenAssetPath: $e');
+        final pathsToTry = chosenAssetPath != null ? [chosenAssetPath, ...candidatePaths.where((p) => p != chosenAssetPath)] : candidatePaths.toList();
 
-          // Try alternative paths if the first attempt failed
-          final fallbackPaths = <String>[
-            posting.svgAssetPath,
-            'assets/${posting.svgAssetPath}',
-            posting.svgAssetPath.replaceFirst(RegExp('^assets/'), ''),
-            'assets/assets/${posting.svgAssetPath.replaceFirst(RegExp('^assets/'), '')}',
-          ].where((p) => p != chosenAssetPath).toList();
-
-          print('   Trying ${fallbackPaths.length} fallback paths...');
-          for (final fallbackPath in fallbackPaths) {
-            try {
-              svgText = await rootBundle.loadString(fallbackPath);
-              print('   ✅ Success with fallback: $fallbackPath (len ${svgText.length})');
-              chosenAssetPath = fallbackPath;
-              break;
-            } catch (fallbackError) {
-              print('   ❌ Fallback failed: $fallbackPath');
-            }
+        for (final path in pathsToTry) {
+          try {
+            svgText = await rootBundle.loadString(path);
+            print('✅ Loaded SVG text for ${posting.svgFilename} from $path (len ${svgText.length})');
+            chosenAssetPath = path; // Found it!
+            break;
+          } catch (e) {
+            print('   ❌ Failed to load from $path');
           }
+        }
 
-          if (svgText == null) {
-            print('   ⚠️  All paths failed for ${posting.svgFilename} - will use assetPath fallback');
-          }
+        if (svgText == null) {
+          print('   ⚠️  All paths failed for ${posting.svgFilename} - will use assetPath fallback');
         }
 
         icons.add(IconMetadata(
@@ -610,7 +602,7 @@ class IconLoader {
           name: '${posting.id} - ${posting.header}',
           category: IconCategory.posting,
           keywords: posting.tags.toList(),
-          assetPath: svgText == null ? chosenAssetPath : null,
+          assetPath: svgText == null ? (chosenAssetPath ?? posting.svgAssetPath) : null,
           svgText: svgText,
           metadata: posting,
         ));
