@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/annotation_models.dart';
+import 'package:collection/collection.dart';
 import '../models/posting_model.dart';
 
 class IconLoader {
@@ -567,7 +568,7 @@ class IconLoader {
         if (assetKeys.isNotEmpty) {
           print('🔍 Searching for ${posting.svgFilename} in asset manifest...');
           print('   Candidates: ${candidatePaths.join(", ")}');
-          chosenAssetPath = candidatePaths.firstWhere((c) => assetKeys.contains(c), orElse: () => null);
+          chosenAssetPath = candidatePaths.firstWhereOrNull((c) => assetKeys.contains(c));
           if (chosenAssetPath != null) {
             print('   ✓ Found in manifest: $chosenAssetPath');
           } else {
