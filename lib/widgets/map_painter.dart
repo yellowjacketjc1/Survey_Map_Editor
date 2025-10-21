@@ -12,6 +12,8 @@ class MapPainter extends CustomPainter {
   final BoundaryAnnotation? selectedBoundary;
   final bool selectedTitleCard;
 
+  static bool _loggedCacheMiss = false;
+
   MapPainter({
     required this.model,
     required this.iconCache,
@@ -221,6 +223,13 @@ class MapPainter extends CustomPainter {
   void _drawEquipment(Canvas canvas, EquipmentAnnotation equipment) {
     // Try to get cached image
     final cachedImage = iconCache[equipment.iconFile];
+
+    // Debug: check cache on first miss
+    if (cachedImage == null && !_loggedCacheMiss) {
+      _loggedCacheMiss = true;
+      debugPrint('🔍 Cache miss for: ${equipment.iconFile}');
+      debugPrint('   Cache keys (${iconCache.length} total): ${iconCache.keys.take(10).join(", ")}');
+    }
 
     if (cachedImage != null) {
       canvas.save();
