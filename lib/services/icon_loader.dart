@@ -559,11 +559,16 @@ class IconLoader {
             'assets/${posting.svgAssetPath}',
             posting.svgAssetPath.replaceFirst(RegExp('^assets/'), ''),
           };
+          print('🔍 Searching for ${posting.svgFilename} in asset manifest...');
+          print('   Candidates: ${candidates.join(", ")}');
           final found = candidates.firstWhere(
             (c) => assetKeys.contains(c),
             orElse: () => posting.svgAssetPath,
           );
           chosenAssetPath = found;
+          print('   ✓ Chosen path: $chosenAssetPath');
+        } else {
+          print('⚠️  AssetManifest is empty - using default path: ${posting.svgAssetPath}');
         }
 
         // Try to eagerly load the SVG text for robustness on web deployments
@@ -571,11 +576,33 @@ class IconLoader {
         String? svgText;
         try {
           svgText = await rootBundle.loadString(chosenAssetPath);
-          print('Loaded SVG text for ${posting.svgFilename} from $chosenAssetPath (len ${svgText.length})');
+          print('✅ Loaded SVG text for ${posting.svgFilename} from $chosenAssetPath (len ${svgText.length})');
         } catch (e) {
-          // ignore - we'll fall back to using assetPath which lets
-          // SvgPicture.asset attempt to resolve via AssetManifest.
-          svgText = null;
+          print('❌ Failed to load ${posting.svgFilename} from $chosenAssetPath: $e');
+
+          // Try alternative paths if the first attempt failed
+          final fallbackPaths = <String>[
+            posting.svgAssetPath,
+            'assets/${posting.svgAssetPath}',
+            posting.svgAssetPath.replaceFirst(RegExp('^assets/'), ''),
+            'assets/assets/${posting.svgAssetPath.replaceFirst(RegExp('^assets/'), '')}',
+          ].where((p) => p != chosenAssetPath).toList();
+
+          print('   Trying ${fallbackPaths.length} fallback paths...');
+          for (final fallbackPath in fallbackPaths) {
+            try {
+              svgText = await rootBundle.loadString(fallbackPath);
+              print('   ✅ Success with fallback: $fallbackPath (len ${svgText.length})');
+              chosenAssetPath = fallbackPath;
+              break;
+            } catch (fallbackError) {
+              print('   ❌ Fallback failed: $fallbackPath');
+            }
+          }
+
+          if (svgText == null) {
+            print('   ⚠️  All paths failed for ${posting.svgFilename} - will use assetPath fallback');
+          }
         }
 
         icons.add(IconMetadata(
