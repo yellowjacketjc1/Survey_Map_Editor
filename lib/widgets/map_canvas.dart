@@ -350,8 +350,8 @@ class _MapCanvasState extends State<MapCanvas> {
         processedContent = processedContent.replaceAll(RegExp(r'<\?xml[^?]*\?>'), '');
         // Remove standalone XML/DOCTYPE declarations
         processedContent = processedContent.replaceAll(RegExp(r'<!DOCTYPE[^>]*>'), '');
-        // Remove HTML comments (<!-- ... -->)
-        processedContent = processedContent.replaceAll(RegExp(r'<!--.*?-->', dotAll: true), '');
+        // Remove HTML comments (<!-- ... -->) - use multiline mode for Safari compatibility
+        processedContent = processedContent.replaceAll(RegExp(r'<!--[\s\S]*?-->', multiLine: true), '');
         // Trim whitespace
         processedContent = processedContent.trim();
         print('   ✂️  Stripped XML declarations and comments');

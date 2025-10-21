@@ -255,6 +255,18 @@ class _IconCard extends StatelessWidget {
 
   const _IconCard({required this.icon, this.isExpanded = false});
 
+  /// Clean SVG content by removing XML declarations and comments for Safari compatibility
+  String _cleanSvgContent(String svgContent) {
+    String cleaned = svgContent;
+    // Remove XML declaration (<?xml ... ?>)
+    cleaned = cleaned.replaceAll(RegExp(r'<\?xml[^?]*\?>'), '');
+    // Remove DOCTYPE declarations
+    cleaned = cleaned.replaceAll(RegExp(r'<!DOCTYPE[^>]*>'), '');
+    // Remove HTML comments (<!-- ... -->) - use \s\S instead of dotAll for Safari
+    cleaned = cleaned.replaceAll(RegExp(r'<!--[\s\S]*?-->', multiLine: true), '');
+    return cleaned.trim();
+  }
+
   Widget _buildIconPreview(IconMetadata icon) {
     // Check if it's a Material Icon
     if (icon.metadata is Map && icon.metadata['type'] == 'material') {
@@ -262,10 +274,10 @@ class _IconCard extends StatelessWidget {
       return Icon(iconData, size: isExpanded ? 48 : 40, color: Colors.black87);
     }
 
-    // SVG string
+    // SVG string - clean it for Safari compatibility
     if (icon.svgText != null) {
       return SvgPicture.string(
-        icon.svgText!,
+        _cleanSvgContent(icon.svgText!),
         width: isExpanded ? null : 50,
         height: isExpanded ? null : 50,
         fit: BoxFit.contain,
