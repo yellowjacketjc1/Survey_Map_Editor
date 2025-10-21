@@ -57,11 +57,44 @@ class _MapCanvasState extends State<MapCanvas> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _resetView();
       _preloadIcons();
+
+      // Listen for equipment changes and load new icons
+      final model = context.read<SurveyMapModel>();
+      model.addListener(_onModelChanged);
     });
+  }
+
+  void _onModelChanged() {
+    final model = context.read<SurveyMapModel>();
+    // Load any equipment icons that aren't in cache yet
+    for (final equipment in model.equipment) {
+      if (!_iconCache.containsKey(equipment.iconFile)) {
+        _loadEquipmentIcon(equipment);
+      }
+    }
+  }
+
+  Future<void> _loadEquipmentIcon(EquipmentAnnotation equipment) async {
+    final model = context.read<SurveyMapModel>();
+    final icon = model.iconLibrary.firstWhere(
+      (icon) => icon.file == equipment.iconFile,
+      orElse: () => throw Exception('Icon not found: ${equipment.iconFile}'),
+    );
+
+    if (icon.metadata is Map && icon.metadata['type'] == 'material') {
+      final iconData = icon.metadata['iconData'] as IconData;
+      await _loadMaterialIconToImage(iconData, equipment.iconFile);
+    } else {
+      final isAsset = equipment.iconSvg.startsWith('assets/') ||
+                      equipment.iconSvg.contains('.svg');
+      await _loadSvgToImage(equipment.iconSvg, equipment.iconFile, isAsset: isAsset);
+    }
   }
 
   @override
   void dispose() {
+    final model = context.read<SurveyMapModel>();
+    model.removeListener(_onModelChanged);
     _focusNode.dispose();
     super.dispose();
   }
