@@ -138,64 +138,29 @@ class _EditingPanelState extends State<EditingPanel> {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          // Header
-          Container(
+      child: Consumer<SurveyMapModel>(
+        builder: (context, model, child) {
+          return ListView(
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.blue.shade700,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: const Row(
-              children: [
-                Icon(Icons.edit, color: Colors.white),
-                SizedBox(width: 8),
-                Text(
-                  'Editing Tools',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Content
-          Expanded(
-            child: Consumer<SurveyMapModel>(
-              builder: (context, model, child) {
-                return ListView(
-                  padding: const EdgeInsets.all(16),
-                  children: [
-                    _buildTitleCardSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildSmearSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildDoseRateSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildBoundarySection(context, model),
-                    const SizedBox(height: 16),
-                    _buildCommentSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildEquipmentSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildPostingsSection(context, model),
-                    const SizedBox(height: 16),
-                    _buildClearAllSection(context, model),
-                  ],
-                );
-              },
-            ),
-          ),
-        ],
+            children: [
+              _buildTitleCardSection(context, model),
+              const SizedBox(height: 16),
+              _buildSmearSection(context, model),
+              const SizedBox(height: 16),
+              _buildDoseRateSection(context, model),
+              const SizedBox(height: 16),
+              _buildBoundarySection(context, model),
+              const SizedBox(height: 16),
+              _buildCommentSection(context, model),
+              const SizedBox(height: 16),
+              _buildEquipmentSection(context, model),
+              const SizedBox(height: 16),
+              _buildPostingsSection(context, model),
+              const SizedBox(height: 16),
+              _buildClearAllSection(context, model),
+            ],
+          );
+        },
       ),
     );
   }

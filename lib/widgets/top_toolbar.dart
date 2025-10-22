@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/survey_map_model.dart';
+import 'help_dialog.dart';
 
 class TopToolbar extends StatelessWidget {
   final VoidCallback onReset;
@@ -138,6 +139,20 @@ class TopToolbar extends StatelessWidget {
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
                   ),
+                ),
+                const Spacer(),
+                // Help button
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const HelpDialog(),
+                    );
+                  },
+                  icon: const Icon(Icons.help_outline),
+                  tooltip: 'Help & User Guide',
+                  iconSize: 24,
+                  color: Colors.blue.shade700,
                 ),
               ],
             ),
