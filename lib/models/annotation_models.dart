@@ -43,6 +43,7 @@ class DoseRateAnnotation {
   String unit;
   DoseType type;
   double fontSize;
+  String? distance; // Distance at which the measurement was taken (e.g., "0 cm", "10 cm", "30 cm")
 
   DoseRateAnnotation({
     required this.position,
@@ -50,6 +51,7 @@ class DoseRateAnnotation {
     this.unit = 'μR/hr',
     this.type = DoseType.gamma,
     this.fontSize = 24.0,
+    this.distance,
   });
 
   DoseRateAnnotation copyWith({
@@ -58,6 +60,7 @@ class DoseRateAnnotation {
     String? unit,
     DoseType? type,
     double? fontSize,
+    String? distance,
   }) {
     return DoseRateAnnotation(
       position: position ?? this.position,
@@ -65,6 +68,7 @@ class DoseRateAnnotation {
       unit: unit ?? this.unit,
       type: type ?? this.type,
       fontSize: fontSize ?? this.fontSize,
+      distance: distance ?? this.distance,
     );
   }
 
@@ -76,6 +80,7 @@ class DoseRateAnnotation {
       'unit': unit,
       'type': type.name,
       'fontSize': fontSize,
+      'distance': distance,
     };
   }
 
@@ -92,6 +97,7 @@ class DoseRateAnnotation {
         orElse: () => DoseType.gamma,
       ),
       fontSize: (json['fontSize'] as num?)?.toDouble() ?? 14.0,
+      distance: json['distance'] as String?,
     );
   }
 }

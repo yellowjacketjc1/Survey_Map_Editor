@@ -18,12 +18,15 @@ class _EditingPanelState extends State<EditingPanel> {
   final TextEditingController _buildingController = TextEditingController();
   final TextEditingController _roomController = TextEditingController();
   final TextEditingController _doseValueController = TextEditingController();
+  final TextEditingController _customDistanceController = TextEditingController();
 
   bool _iconsExpanded = false;
   final FocusNode _doseValueFocusNode = FocusNode();
   final GlobalKey _doseValueFieldKey = GlobalKey();
   bool _highlightDoseValue = false;
   OverlayEntry? _tooltipOverlay;
+  bool _includeDistance = false; // Whether to include distance in dose rate
+  String _selectedDistance = 'Contact (0 cm)'; // Default distance option
 
   @override
   void initState() {
@@ -41,6 +44,7 @@ class _EditingPanelState extends State<EditingPanel> {
     _buildingController.dispose();
     _roomController.dispose();
     _doseValueController.dispose();
+    _customDistanceController.dispose();
     _doseValueFocusNode.dispose();
     _removeTooltip();
     super.dispose();
@@ -403,13 +407,22 @@ class _EditingPanelState extends State<EditingPanel> {
                             border: OutlineInputBorder(),
                             isDense: true,
                           ),
-                          items: const [
-                            DropdownMenuItem(
-                                value: 'μR/hr', child: Text('μR/hr')),
-                            DropdownMenuItem(
-                                value: 'mR/hr', child: Text('mR/hr')),
-                            DropdownMenuItem(value: 'R/hr', child: Text('R/hr')),
-                          ],
+                          items: model.doseType == DoseType.gamma
+                              ? const [
+                                  DropdownMenuItem(
+                                      value: 'μR/hr', child: Text('μR/hr')),
+                                  DropdownMenuItem(
+                                      value: 'mR/hr', child: Text('mR/hr')),
+                                  DropdownMenuItem(value: 'R/hr', child: Text('R/hr')),
+                                  DropdownMenuItem(value: 'cpm', child: Text('cpm')),
+                                ]
+                              : const [
+                                  DropdownMenuItem(
+                                      value: 'μR/hr', child: Text('μR/hr')),
+                                  DropdownMenuItem(
+                                      value: 'mR/hr', child: Text('mR/hr')),
+                                  DropdownMenuItem(value: 'R/hr', child: Text('R/hr')),
+                                ],
                           onChanged: (value) {
                             if (value != null) {
                               model.setDoseUnit(value);
@@ -425,7 +438,11 @@ class _EditingPanelState extends State<EditingPanel> {
                   children: [
                     Flexible(
                       child: InkWell(
-                        onTap: () => model.setDoseType(DoseType.gamma),
+                        onTap: () {
+                          model.setDoseType(DoseType.gamma);
+                          // If switching to gamma and unit is not valid, keep the current unit
+                          // (cpm is only valid for gamma, so no change needed)
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -447,7 +464,13 @@ class _EditingPanelState extends State<EditingPanel> {
                     const SizedBox(width: 8),
                     Flexible(
                       child: InkWell(
-                        onTap: () => model.setDoseType(DoseType.neutron),
+                        onTap: () {
+                          // If switching to neutron and current unit is cpm, reset to μR/hr
+                          if (model.doseUnit == 'cpm') {
+                            model.setDoseUnit('μR/hr');
+                          }
+                          model.setDoseType(DoseType.neutron);
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -456,6 +479,10 @@ class _EditingPanelState extends State<EditingPanel> {
                               groupValue: model.doseType,
                               onChanged: (value) {
                                 if (value != null) {
+                                  // If switching to neutron and current unit is cpm, reset to μR/hr
+                                  if (model.doseUnit == 'cpm') {
+                                    model.setDoseUnit('μR/hr');
+                                  }
                                   model.setDoseType(value);
                                 }
                               },
@@ -469,6 +496,82 @@ class _EditingPanelState extends State<EditingPanel> {
                   ],
                 ),
                 const SizedBox(height: 12),
+                // Distance selection (only for gamma and neutron)
+                if (model.doseType == DoseType.gamma || model.doseType == DoseType.neutron) ...[
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: _includeDistance,
+                        onChanged: (value) {
+                          setState(() {
+                            _includeDistance = value ?? false;
+                            if (!_includeDistance) {
+                              // Clear distance when unchecked
+                              model.setDoseDistance(null);
+                              _customDistanceController.clear();
+                              _selectedDistance = 'Contact (0 cm)';
+                            } else {
+                              // Set default distance when checked
+                              model.setDoseDistance(_selectedDistance);
+                            }
+                          });
+                        },
+                      ),
+                      const Text('Include Distance', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  if (_includeDistance) ...[
+                    const SizedBox(height: 8),
+                    DropdownButtonFormField<String>(
+                      value: _selectedDistance,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                      ),
+                      items: const [
+                        DropdownMenuItem(value: 'Contact (0 cm)', child: Text('Contact (0 cm)')),
+                        DropdownMenuItem(value: '10 cm', child: Text('10 cm')),
+                        DropdownMenuItem(value: '30 cm', child: Text('30 cm')),
+                        DropdownMenuItem(value: 'Custom', child: Text('Custom...')),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedDistance = value!;
+                          if (value == 'Custom') {
+                            // Custom will show text field below
+                            model.setDoseDistance(null);
+                          } else {
+                            model.setDoseDistance(value);
+                            _customDistanceController.clear();
+                          }
+                        });
+                      },
+                    ),
+                    if (_selectedDistance == 'Custom') ...[
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: _customDistanceController,
+                        decoration: const InputDecoration(
+                          labelText: 'Custom Distance (cm)',
+                          hintText: 'e.g., 15',
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                          suffixText: 'cm',
+                        ),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          if (value.trim().isNotEmpty) {
+                            model.setDoseDistance('$value cm');
+                          } else {
+                            model.setDoseDistance(null);
+                          }
+                        },
+                      ),
+                    ],
+                  ],
+                  const SizedBox(height: 12),
+                ],
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -735,8 +838,6 @@ class _EditingPanelState extends State<EditingPanel> {
         ),
         child: Row(
           children: [
-            const Icon(Icons.open_in_browser, size: 20, color: Colors.blue),
-            const SizedBox(width: 8),
             const Text(
               '☢️',
               style: TextStyle(fontSize: 20),

@@ -681,18 +681,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildWorkspace() {
-    return Column(
+    return Stack(
       children: [
-        // Top toolbar
-        TopToolbar(
-          onReset: _resetView,
-          onSave: _saveProject,
-          onLoad: _loadProject,
-          onExportPdf: _exportPdf,
-          onPrint: _printMap,
-        ),
-        // Main workspace
-        Expanded(
+        // Main workspace with padding to account for toolbar
+        Padding(
+          padding: const EdgeInsets.only(top: 60),
           child: Row(
             children: [
               // Main map area
@@ -705,6 +698,19 @@ class _HomeScreenState extends State<HomeScreen> {
               // Right editing panel
               const EditingPanel(),
             ],
+          ),
+        ),
+        // Top toolbar (on top of everything)
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: TopToolbar(
+            onReset: _resetView,
+            onSave: _saveProject,
+            onLoad: _loadProject,
+            onExportPdf: _exportPdf,
+            onPrint: _printMap,
           ),
         ),
       ],

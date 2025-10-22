@@ -50,6 +50,7 @@ class SurveyMapModel extends ChangeNotifier {
   DoseType _doseType = DoseType.gamma;
   double _doseFontSize = 24.0;
   bool _doseValueEntered = false; // Track if user has entered a value
+  String? _doseDistance; // Distance at which measurement was taken
 
   // Dose rate validation callback
   VoidCallback? _onDoseRateValidationFailed;
@@ -96,6 +97,7 @@ class SurveyMapModel extends ChangeNotifier {
   String get doseUnit => _doseUnit;
   DoseType get doseType => _doseType;
   double get doseFontSize => _doseFontSize;
+  String? get doseDistance => _doseDistance;
   EquipmentAnnotation? get selectedIcon => _selectedIcon;
   bool get isResizing => _isResizing;
   ResizeHandle? get resizeHandle => _resizeHandle;
@@ -360,6 +362,11 @@ class SurveyMapModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setDoseDistance(String? distance) {
+    _doseDistance = distance;
+    notifyListeners();
+  }
+
   void setDoseRateValidationCallback(VoidCallback? callback) {
     _onDoseRateValidationFailed = callback;
   }
@@ -379,6 +386,7 @@ class SurveyMapModel extends ChangeNotifier {
       unit: _doseUnit,
       type: _doseType,
       fontSize: _doseFontSize,
+      distance: _doseDistance,
     );
     undoRedoManager.executeCommand(AddDoseRateCommand(this, doseRate));
     debugPrint('✓ Dose rate added at $position: $_doseValue $_doseUnit, total: ${_doseRates.length}');

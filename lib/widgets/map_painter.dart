@@ -154,7 +154,11 @@ class MapPainter extends CustomPainter {
     // Use object identity to check if this is the selected dose rate
     final isSelected = selectedDoseRate != null && identical(selectedDoseRate, dose);
 
-    final displayValue = '${dose.value} ${dose.unit}';
+    // Build display text with distance if present
+    String displayValue = '${dose.value} ${dose.unit}';
+    if (dose.distance != null && dose.distance!.isNotEmpty) {
+      displayValue += ' @${dose.distance}';
+    }
 
     final textPainter = TextPainter(
       text: TextSpan(
