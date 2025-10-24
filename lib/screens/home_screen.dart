@@ -536,7 +536,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-r            // Large centered logo
+            // Large centered logo
             SvgPicture.asset(
               'assets/map_icon.svg',
               width: 280,
