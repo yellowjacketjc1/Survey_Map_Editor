@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle, ByteData;
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../models/survey_map_model.dart';
 import '../models/building_map_model.dart';
 import '../services/pdf_service.dart';
@@ -535,143 +536,57 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Header
-            const Icon(
-              Icons.map,
-              size: 80,
-              color: Colors.blue,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'SurveyMap',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
+            // Large centered logo
+            Transform.translate(
+              offset: const Offset(0, 40),
+              child: SvgPicture.asset(
+                'assets/map_icon.svg',
+                width: 560,
+                height: 560,
               ),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Radiological Survey Mapping Tool',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
-              ),
+            // Action buttons beneath the logo
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: _browseMaps,
+                  icon: const Icon(Icons.folder_open, size: 24),
+                  label: const Text('Browse Maps'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 24,
+                    ),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
+                ),
+                const SizedBox(width: 24),
+                ElevatedButton.icon(
+                  onPressed: _pickAndLoadPdf,
+                  icon: const Icon(Icons.upload_file, size: 24),
+                  label: const Text('Upload PDF'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 24,
+                    ),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 48),
-            // Upload area
-            Container(
-              width: 500,
-              padding: const EdgeInsets.all(48),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 20,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  const Icon(
-                    Icons.picture_as_pdf,
-                    size: 64,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Upload PDF Map',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Click the button below to select your PDF file',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: _browseMaps,
-                        icon: const Icon(Icons.folder_open),
-                        label: const Text('Browse Maps'),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
-                          ),
-                          textStyle: const TextStyle(fontSize: 16),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      ElevatedButton.icon(
-                        onPressed: _pickAndLoadPdf,
-                        icon: const Icon(Icons.upload_file),
-                        label: const Text('Upload File'),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
-                          ),
-                          textStyle: const TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Browse from pre-defined building maps or upload your own PDF',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 32),
-                  const Divider(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'or',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  OutlinedButton.icon(
-                    onPressed: _loadProject,
-                    icon: const Icon(Icons.folder_open),
-                    label: const Text('Load Saved Project'),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 16,
-                      ),
-                      textStyle: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Load a previously saved project with all annotations',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+            const SizedBox(height: 24),
+            OutlinedButton.icon(
+              onPressed: _loadProject,
+              icon: const Icon(Icons.folder_open, size: 24),
+              label: const Text('Load Saved Project'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 24,
+                ),
+                textStyle: const TextStyle(fontSize: 18),
               ),
             ),
           ],

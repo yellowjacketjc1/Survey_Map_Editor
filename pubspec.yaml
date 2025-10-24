@@ -54,6 +54,7 @@ flutter:
     - assets/Postings/
     - assets/postings.json
     - assets/building_maps.json
+    - assets/map_icon.svg
     - Current Maps/Building 200/
     - Current Maps/Building 203/
     - Current Maps/Building 205/
