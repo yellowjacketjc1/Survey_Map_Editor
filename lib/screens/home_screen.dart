@@ -536,15 +536,13 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Large centered logo
-            Transform.translate(
-              offset: const Offset(0, 40),
-              child: SvgPicture.asset(
-                'assets/map_icon.svg',
-                width: 560,
-                height: 560,
-              ),
+r            // Large centered logo
+            SvgPicture.asset(
+              'assets/map_icon.svg',
+              width: 280,
+              height: 280,
             ),
+            const SizedBox(height: 64),
             // Action buttons beneath the logo
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
